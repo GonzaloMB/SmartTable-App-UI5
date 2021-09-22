@@ -65,10 +65,45 @@ We save the project in the package "ZFORMACION" created for that course.
 
 ![image](https://user-images.githubusercontent.com/55688528/134386199-65cb6f99-29f6-4eae-b85e-0339d7057f81.png)
 
+##### 1.2 Métodos
+
+We display the Runtime Artifacts folder that contains the classes of our oData, for this practical case we will only use the ZCL_XX_DPC_EXT class since it is the extension where we can redefine the methods of our Entity.
+
+![image](https://user-images.githubusercontent.com/55688528/134387402-319d3890-6694-4747-b7c2-b6cd6157e659.png)
+
+Inside our class we display the inherited methods and methods folder, here we will find the methods of our Entity with the following nomenclature:
+
+XX_GET_ENTITY -Returns us a single record.
+XX_GET_ENTITYSET -Returns us an internal table.
+XX_CREATE_ENTITY -Method to create a record.
+XX_UPDATE_ENTITY -
+Method to update a record.
+XX_DELETE_ENTITY -Method to Delete a record.
+
+![image](https://user-images.githubusercontent.com/55688528/134387463-4ee09d57-4e38-471e-a2fa-3dec53a82c4b.png)
+
+We look for the method we want to redefine, in our case XX_GET_ENITYSET since we are going to paint a table with several records.
+
+![image](https://user-images.githubusercontent.com/55688528/134387513-cbc3043c-9c92-45d8-a651-f089837c2ad6.png)
+
+Once the method is redefined, it will go to the Redefinitions folder, but it will leave the method empty with the input and output stops commented.
+
+In our case, the parameter that we must fill will be ET_ENTITYSET which will return the call with information.
+
+![image](https://user-images.githubusercontent.com/55688528/134387556-4294ab4a-a799-4686-977c-e9ac2eda75e2.png)
+
+Inside the method we call the BAPI_USER_GET_DATAIL function which returns a table with the Roles of the executing user, to this function we pass the internal table Importing of our method so that the function returns it to us and we can process the data from UI5.
+
+For error control we will use the Exception.
+/IWBEP/CX_MGW_BUSI_EXCEPTION
+
+![image](https://user-images.githubusercontent.com/55688528/134387609-b9f082bb-d3f9-4f4f-8d3b-f773af31d6a1.png)
 
 ```
-Da un ejemplo
+DATA: lt_return TYPE TABLE OF bapiret2
+CALL FUNCTION 'BAPI_USER_GET_DETAIL'
 ```
+
 
 ### Front-End ⌨️
 
