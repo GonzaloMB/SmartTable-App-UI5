@@ -1,54 +1,52 @@
-<h1 align="center"> SmartTable App | SAP FIORI | UI5 📝</h1>
+<h1 align="center"> Smart Table App | SAP FIORI | UI5 🖥️ </h1>
 
 <div align="center">
-  Create a smarttable application from scratch.
+  Create a Smart Table Web Application from scratch using SAP technologies.
 </div>
 <div align="center">
   <h3>
     <a href="https://www.linkedin.com/in/gonzalo-meana-balseiro-90a523188/">
-      Contact Me
+      Contact Me 📲
     </a>
   </h3>
 </div>
 
 ## Starting 🚀
+In this practical case we will create an oData (Open Data Protocol) service from scratch and an Smart Table App in UI5 using a table from the sap.m. library.
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
+The smart table creates a responsive table, grid table, tree table, or analytical table based on an **OData (Open Data Protocol)** service and its annotations. The table toolbar comes with additional built-in features, such as personalization, export to spreadsheet, and variant management.
 
-Mira **Deployment** para conocer como desplegar el proyecto.
+### Pre-requirements 📋
+
+_Tools you need to be able to develop this application_
+
+* **SAP Logon** - *Locally installed program that you use to directly log on to an SAP system* - **Back-end**
+* **SAP Web IDE** - *Web-based development environment that is optimized for developing SAPUI5* - **Front-end**
 
 
-### Pre-requisitos 📋
+## Practical case ⚙️
 
-_Que cosas necesitas para instalar el software y como instalarlas_
+_In this application we are going to develop both the back-end and the front-end part_
+
+### Back-end 🔩
+#### 1. oData
+En la transacción SEGW creamos un nuevo proyecto, le damos el nombre “Z+nuestro nombre” y elegimos el tipo “Service with SAP Annotations“.
+(En este ejemplo no usamos Annotations, pero puede que el futuro si, si no lo creas de este tipo tendrás que borrar el oData y crearlo de nuevo ya que una vez creado no te deja 
+cambiar el tipo).
+
+![image](https://user-images.githubusercontent.com/55688528/134384299-98495fb4-14ff-4155-adda-4d034a149ef3.png)
+
+##### 1.1 Entity types
+Para crear un Entity types desplegamos nuestro oData, damos botón derecho, import y RFC/BOR Interface(En este caso vamos a definir nuestro Entity types desde un parámetro Export de una funcion). 
+
+![image](https://user-images.githubusercontent.com/55688528/134384659-bfdc91ed-72f1-4e0b-a2dd-d6e71aed8de0.png)
+
 
 ```
 Da un ejemplo
 ```
 
-### Instalación 🔧
-
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
-
-_Dí cómo será ese paso_
-
-```
-Da un ejemplo
-```
-
-_Y repite_
-
-```
-hasta finalizar
-```
-
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
-
-## Ejecutando las pruebas ⚙️
-
-_Explica como ejecutar las pruebas automatizadas para este sistema_
-
-### Analice las pruebas end-to-end 🔩
+### Front-End ⌨️
 
 _Explica que verifican estas pruebas y por qué_
 
@@ -56,59 +54,29 @@ _Explica que verifican estas pruebas y por qué_
 Da un ejemplo
 ```
 
-### Y las pruebas de estilo de codificación ⌨️
+## Built with 🛠️
+_Back-end:_
+* **ABAP**
 
-_Explica que verifican estas pruebas y por qué_
+_Gateway:_
+* **oData**
 
-```
-Da un ejemplo
-```
+_Front-End:_
+* **UI5**
+* **HTML**
+* **CSS**
 
-## Despliegue 📦
+![](https://gocoding.org/wp-content/uploads/2019/07/SAP-OData-High-Level-Architecture.png?ezimgfmt=ng:webp/ngcb3)
 
-_Agrega notas adicionales sobre como hacer deploy_
+## Author ✒️
 
-## Construido con 🛠️
+* **Gonzalo Meana** - *SAP Developer* - [GonzaloMB](https://github.com/GonzaloMB)
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
+## Expressions of Gratitude 🎁
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
-
-## Contribuyendo 🖇️
-
-Por favor lee el [CONTRIBUTING.md](https://gist.github.com/villanuevand/xxxxxx) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
-
-## Wiki 📖
-
-Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/tu/proyecto/wiki)
-
-## Versionado 📌
-
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
-
-## Autores ✒️
-
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
-
-* **Andrés Villanueva** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
-* **Fulanito Detal** - *Documentación* - [fulanitodetal](#fulanito-de-tal)
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
-
-## Licencia 📄
-
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
-
-## Expresiones de Gratitud 🎁
-
-* Comenta a otros sobre este proyecto 📢
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* etc.
-
-
+* Tell others about this project 📢
+* Invite someone on the team to have a beer 🍺 or a coffee ☕. 
+* Thanks for reading the project 🤓.
 
 ---
-⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊
+⌨️ whit ❤️ by [GonzaloMB](https://github.com/GonzaloMB) 😊
