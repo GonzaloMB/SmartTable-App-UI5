@@ -1,6 +1,15 @@
-# SmartTable App | SAP FIORI | UI5
+<h1 align="center"> SmartTable App | SAP FIORI | UI5 📝</h1>
 
-Create a smarttable application from scratch.
+<div align="center">
+  Create a smarttable application from scratch.
+</div>
+<div align="center">
+  <h3>
+    <a href="https://www.linkedin.com/in/gonzalo-meana-balseiro-90a523188/">
+      Contact Me
+    </a>
+  </h3>
+</div>
 
 ## Starting 🚀
 
