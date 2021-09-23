@@ -154,7 +154,7 @@ We go to the tab Connectivity -> Destinations, and add a new connection.
 ![image](https://user-images.githubusercontent.com/55688528/134531764-114d0d49-9240-46f1-b1b3-f009e323a6d5.png)
 
 
-#### 3. oData
+#### 3. UI5
 Before starting, we must have a user at [https://account.hanatrial.ondemand.com/#/home/welcome](https://account.hanatrial.ondemand.com/#/home/welcome) to be able to enter SAP
 Web IDE.
 
@@ -174,6 +174,7 @@ We choose the type of view that we are going to use, in this case XML, and we gi
 
 ![image](https://user-images.githubusercontent.com/55688528/134517168-555fc396-1085-4369-bb3b-2d758a5c9b35.png)
 
+#### 3.1 Manifest
 Before starting to design the view of our application we have to configure the Manifest.json file where we define our oData service and our data model.
 To modify this file we can use 2 ways, Descriptor Editor (Graphical Interface) or Code Editor (Using Code), in this case I will use the graphical interface and I will put the
 code below.
@@ -311,7 +312,8 @@ With Code Editor:
 }
       
 ```
-#### 3.1 View
+
+#### 3.3 View
 The first thing we do is import the libraries that we are going to use:
 * sap.ui.core.mvc
 * sap.m
@@ -320,6 +322,7 @@ The first thing we do is import the libraries that we are going to use:
 
 
 We define the smartTable tag with the following attributes:
+
 * **entitySet:** We refer to the entity created in our oData.
 * **smartFilterId:** It refers to the Id of our smartFilterBar
 * **tableType:** Type of table that we want to show Help types
@@ -347,15 +350,30 @@ File View1.view.xml:
 			<pages>
 				<Page id="page" title="{i18n>title}">
 					<content>
-						<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="ActivitygroupsSet" persistencyKey="SmartFilter_Explored"
+						<smartFilterBar:SmartFilterBar 
+							id="smartFilterBar"
+							entitySet="ActivitygroupsSet"
+							persistencyKey="SmartFilter_Explored"
 							considerAnalyticalParameters="true">
 							<smartFilterBar:layoutData>
 								<FlexItemData shrinkFactor="0"/>
 							</smartFilterBar:layoutData>
 						</smartFilterBar:SmartFilterBar>
-						<smartTable:SmartTable id="LineItemsSmartTable" entitySet="ActivitygroupsSet" smartFilterId="smartFilterBar" tableType="ResponsiveTable"
-							showFullScreenButton="true" useExportToExcel="true" beforeExport="onBeforeExport" demandPopin="true" useVariantManagement="true"
-							useTablePersonalisation="true" header="Registros" showRowCount="true" persistencyKey="disposicion" enableAutoBinding="true"
+						<smartTable:SmartTable 
+							id="LineItemsSmartTable" 
+							entitySet="ActivitygroupsSet"
+							smartFilterId="smartFilterBar"
+							ableType="ResponsiveTable"
+							showFullScreenButton="true" 
+							useExportToExcel="true" 
+							beforeExport="onBeforeExport"
+							demandPopin="true"
+							useVariantManagement="true"
+							useTablePersonalisation="true" 
+							header="Registros"
+							showRowCount="true" 
+							persistencyKey="disposicion"
+							enableAutoBinding="true"
 							class="sapUiResponsiveContentPadding">
 							<smartTable:layoutData>
 								<FlexItemData growFactor="1" baseSize="0%"/>
@@ -368,7 +386,6 @@ File View1.view.xml:
 	</Shell>
 </mvc:View>
 ```
-
 
 ## Built with 🛠️
 _Back-end:_
