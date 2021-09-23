@@ -313,7 +313,7 @@ With Code Editor:
       
 ```
 
-#### 3.3 View
+#### 3.2 View
 The first thing we do is import the libraries that we are going to use:
 * sap.ui.core.mvc
 * sap.m
@@ -386,6 +386,103 @@ File View1.view.xml:
 	</Shell>
 </mvc:View>
 ```
+#### 3.3 Annotations
+We create a folder with the name 'annotations' and within this we create the Annotations file, we leave the default name and select our oData service.
+
+![image](https://user-images.githubusercontent.com/55688528/134545104-c5721231-d124-439e-81bd-ef49f2c698bb.png)
+![image](https://user-images.githubusercontent.com/55688528/134545212-028e0fe4-a94f-480e-a9e8-fe1088e4e01c.png)
+
+In our Annotations file we add a LineItem that governs the columns of our SmartTable and in our LineItem we add a DataField for each field that we want to show in a standard way in our table, referring in the value to the field of our entityset.
+
+![image](https://user-images.githubusercontent.com/55688528/134545299-4e5a2880-5f81-4356-a5ac-bcb4a55ab770.png)
+
+To add search aids to each field we select Select Targets.
+
+![image](https://user-images.githubusercontent.com/55688528/134545645-af8615bd-297e-4114-9606-69ac2b945000.png)
+
+We display our entity and select each of the fields that have search assistance.
+
+![image](https://user-images.githubusercontent.com/55688528/134545761-df9dcf70-c772-48c4-ad78-4decd3920e7e.png)
+
+Once the fields have been selected we have to add a list of values with the ValueList node, within this node we add our entityset in the CollectionPatch attribute that
+the search help will call and we also add the SearchSupported = true attribute.
+
+In our ValueList we also add the Parameters node (It governs the columns that our search help shows), and we add the ValueListParameterInOut attribute by selecting our
+field, which will be the key field of our search aid and to finish if we want another column with a description field we add the ValueListParameterDisplay attribute with the description field of our entity.
+
+![image](https://user-images.githubusercontent.com/55688528/134554019-e40c22a3-8990-4316-a92d-92f21b1b2c1a.png)
+
+To add a default filter to the SmartFilterBar, in our Entity Type inside Local Annotations we add a UI.SelectionFields and inside an Item where we will select the field that we want to show as a filter.
+
+![image](https://user-images.githubusercontent.com/55688528/134550492-41e6e823-4be2-4548-8749-aef0c9e0cd25.png)
+
+Code Editor anotation0.xml
+
+```xml
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="/sap/opu/odata/sap/ZGONZALOMB_SRV_01/$metadata">
+		<edmx:Include Alias="Metadata" Namespace="ZGONZALOMB_SRV_01"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470968/UI.xml?api=v2">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ZGONZALOMB.annotations.annotation0.ZGONZALOMB_SRV_01">
+			<Annotations Target="Metadata.Activitygroups">
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>AgrName</PropertyPath>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="AgrName"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="FromDat"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ToDat"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="AgrText"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="OrgFlag"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.Activitygroups/AgrName">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ActivitygroupsSet"/>
+						<PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="AgrName"/>
+									<PropertyValue Property="ValueListProperty" String="AgrName"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="AgrText"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
+```
+This would be the result of our SmartTable UI5 App.
+
+https://user-images.githubusercontent.com/55688528/134554564-73176350-1435-4120-9039-0311f9bacd0c.mp4
 
 ## Built with 🛠️
 _Back-end:_
