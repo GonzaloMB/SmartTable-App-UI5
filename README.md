@@ -58,6 +58,10 @@ We display our Entity types and we can see that we care about the fields. There 
 We must put these fields as Nullable since if the field is empty it throws an error.
 
 ![image](https://user-images.githubusercontent.com/55688528/134510132-bafcec8a-fb71-41bd-9925-b6a413623544.png)
+##### 1.2 Properties
+To parameterize the filters and the ordering of the SmartTable records, the fields must be marked as Sortable and Filterable.
+_Note: The FromDat and ToDat fields must have the Nullable property marked because otherwise when the call is made from the SmartTable it would give an error._
+![image](https://user-images.githubusercontent.com/55688528/134537862-bce5ad98-6c8a-442d-bc5b-16bb871261f7.png)
 
 We generate our project from the button ![image](https://user-images.githubusercontent.com/55688528/134386072-8624accc-8bcf-4acf-878f-49ebfc5f7257.png)
 And it automatically generates the classes (We can change the name of the classes but it is not necessary)
@@ -68,7 +72,7 @@ We save the project in the package "Local Object" for this course.
 
 ![image](https://user-images.githubusercontent.com/55688528/134511345-36c48b17-6b13-4041-903b-f677ae7a06c9.png)
 
-##### 1.2 Métodos
+##### 1.3 Métodos
 
 We display the Runtime Artifacts folder that contains the classes of our oData, for this practical case we will only use the ZCL_XX_DPC_EXT class since it is the extension where we can redefine the methods of our Entity.
 
@@ -111,14 +115,50 @@ For error control we will use the Exception.
         activitygroups = et_entityset
         return         = lt_return.
 ```
+Finally we will register our service in SAP Gateway with the /n/IWFND/MAINT_SERVICE transaction.
+In my case the service is already registered, if your service is not registered we click on "Add Service".
+![image](https://user-images.githubusercontent.com/55688528/134529021-3b7e1bf2-4768-4bf8-91e3-d972700aafd8.png)
+
+We look for our service and click on it, then we add the service.
+![image](https://user-images.githubusercontent.com/55688528/134529419-58a3276a-762a-4d3c-bf4d-5b290ec2c7fb.png)
+![image](https://user-images.githubusercontent.com/55688528/134529935-eeb57fc5-c885-4fd2-88e3-919d126ef2d3.png)
+
+
 
 ### Front-End ⌨️
+#### 2. Connections
+First we have to install Cloud connector and SAP JVM in our store, we can download them from.
+[https://tools.hana.ondemand.com/#cloud](https://tools.hana.ondemand.com/#cloud)
+![image](https://user-images.githubusercontent.com/55688528/134530388-ae92738a-2b80-42ec-b54d-2172ebaeaeed.png)
+![image](https://user-images.githubusercontent.com/55688528/134530408-630c9808-71a6-44b4-85ff-884b8e5d2c0d.png)
 
-#### 1. oData
+Once the two components are installed and registered in Hanatrial ondemand, we must access **https://localhost:8443/** from the browser.
+
+* **User:** Administrator
+* **Password:** manage
+
+Once inside we configure our user.
+
+![image](https://user-images.githubusercontent.com/55688528/134530786-ea9b8ecb-da7a-4afe-9964-1a746b53ceea.png)
+![image](https://user-images.githubusercontent.com/55688528/134530997-deb2d61c-be80-42cb-8d27-47801bddeda0.png)
+
+When our user is configured we go to the Cloud To On-Premise tab to configure the connection to our machine.
+
+![image](https://user-images.githubusercontent.com/55688528/134531207-3cf2a209-b238-44e5-88e6-18e9196ea04b.png)
+
+Finally we enter our SAP Cloud Platform to configure the connection to our SAP machine.
+https://account.hanatrial.ondemand.com/#/home/welcome
+
+We go to the tab Connectivity -> Destinations, and add a new connection.
+
+![image](https://user-images.githubusercontent.com/55688528/134531764-114d0d49-9240-46f1-b1b3-f009e323a6d5.png)
+
+
+#### 3. oData
 Before starting, we must have a user at [https://account.hanatrial.ondemand.com/#/home/welcome](https://account.hanatrial.ondemand.com/#/home/welcome) to be able to enter SAP
 Web IDE.
 
-We open our UI5 development environment in this case Webid, we right click on our Workspace, New and Project From Template
+We open our UI5 development environment in this case Webid, we right click on our Workspace, New and Project From Template.
 
 ![image](https://user-images.githubusercontent.com/55688528/134516268-f3ee696c-905f-4520-8ef6-8dc96e9f44fd.png)
 
@@ -135,15 +175,198 @@ We choose the type of view that we are going to use, in this case XML, and we gi
 ![image](https://user-images.githubusercontent.com/55688528/134517168-555fc396-1085-4369-bb3b-2d758a5c9b35.png)
 
 Before starting to design the view of our application we have to configure the Manifest.json file where we define our oData service and our data model.
-To modify this file we can use 2 ways, Descriptor Editor (Graphical Interface) or Code Editor (Using Code), in this case I will use the graphical interface and I will put the code below.
+To modify this file we can use 2 ways, Descriptor Editor (Graphical Interface) or Code Editor (Using Code), in this case I will use the graphical interface and I will put the
+code below.
 
 ![image](https://user-images.githubusercontent.com/55688528/134521200-fb9d7533-2fa8-4a6a-a09f-995055e1f08e.png)
 
+In Service Catalog we look for our previously configured system, and then we look for our OData service.
 
+![image](https://user-images.githubusercontent.com/55688528/134532290-144c67ce-6a0a-4472-b82b-f0024b3be282.png)
 
-```js
+In this example we select the default model and finish.
 
+![image](https://user-images.githubusercontent.com/55688528/134532709-41f535b4-2a94-4789-8c79-0c45b1c2c195.png)
+![image](https://user-images.githubusercontent.com/55688528/134532832-d75bdcb5-ee75-46f6-bb6c-99bccf5dfa10.png)
+
+With Code Editor: 
+
+```json
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "Z + our name.Z + our name",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"Z + our name_SRV": {
+				"uri": "/sap/opu/odata/sap/Z + our name_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "Z + our name.Z + our name.view.View1",
+			"type": "XML",
+			"async": true,
+			"id": "View1"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "Z + our name.Z + our name.i18n.i18n"
+				}
+			},
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "Z + our name_SRV",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "Z + our name.Z + our name.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false
+			},
+			"routes": [
+				{
+					"name": "RouteView1",
+					"pattern": "RouteView1",
+					"target": [
+						"TargetView1"
+					]
+				}
+			],
+			"targets": {
+				"TargetView1": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewId": "View1",
+					"viewName": "View1"
+				}
+			}
+		}
+	}
+}
       
+```
+#### 3.1 View
+The first thing we do is import the libraries that we are going to use:
+* sap.ui.core.mvc
+* sap.m
+* sap.ui.comp.smartfilterbar
+* sap.ui.comp.smarttable
+
+
+We define the smartTable tag with the following attributes:
+* **entitySet:** We refer to the entity created in our oData.
+* **smartFilterId:** It refers to the Id of our smartFilterBar
+* **tableType:** Type of table that we want to show Help types
+* **showFullScreenButton:** It shows us a button to see the table in full screen
+* **useExportExcel:** It shows us a button to export the table in Excel
+* **demandPopin:** Responsive mode on mobile devices.
+* **useVariantManagement:** Generates variants for the layout of the fields.
+* **useTablePersonalization:** Enable column customization.
+* **header:** Name that appears in the Record Counter.
+* **showRowCount:** Activate register counter.
+* **persistencyKey:** Key name of our SmartTable.
+* **enableAutoBinding:** Activate the call to our entity automatically.
+
+It is not necessary to define the columns that are shown in the table since we will control it with the Annotations.
+
+File View1.view.xml:
+
+```xml
+<mvc:View controllerName="ZGONZALOMB.ZGONZALOMB.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:smartForm="sap.ui.comp.smartform" xmlns:smartField="sap.ui.comp.smartfield" xmlns:smartVariantManagement="sap.ui.comp.smartvariants"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="ActivitygroupsSet" persistencyKey="SmartFilter_Explored"
+							considerAnalyticalParameters="true">
+							<smartFilterBar:layoutData>
+								<FlexItemData shrinkFactor="0"/>
+							</smartFilterBar:layoutData>
+						</smartFilterBar:SmartFilterBar>
+						<smartTable:SmartTable id="LineItemsSmartTable" entitySet="ActivitygroupsSet" smartFilterId="smartFilterBar" tableType="ResponsiveTable"
+							showFullScreenButton="true" useExportToExcel="true" beforeExport="onBeforeExport" demandPopin="true" useVariantManagement="true"
+							useTablePersonalisation="true" header="Registros" showRowCount="true" persistencyKey="disposicion" enableAutoBinding="true"
+							class="sapUiResponsiveContentPadding">
+							<smartTable:layoutData>
+								<FlexItemData growFactor="1" baseSize="0%"/>
+							</smartTable:layoutData>
+						</smartTable:SmartTable>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
 ```
 
 
