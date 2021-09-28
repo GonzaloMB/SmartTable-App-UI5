@@ -502,7 +502,7 @@ _Front-End:_
 
 * **Gonzalo Meana** - *SAP Developer* - [GonzaloMB](https://github.com/GonzaloMB)
 
-## Expressions of Gratitude 🎁
+## Thankfulness 🎁
 
 * Tell others about this project 📢
 * Invite someone on the team to have a beer 🍺 or a coffee ☕. 
